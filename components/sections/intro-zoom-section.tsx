@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import CircularRevealHero from "@/components/ui/circular-reveal-hero"
+import ScrollTriggerZoom from "@/components/ui/scroll-trigger-zoom"
 import HeroSection from "@/components/sections/hero-section"
 import LaptopVisual from "@/components/ui/laptop-visual"
 import ProjectsSection from "@/components/sections/projects-section"
@@ -12,17 +12,17 @@ import Footer from "@/components/layout/footer"
 export default function IntroZoomSection() {
   const [showMainContent, setShowMainContent] = useState(false)
 
-  const handleRevealComplete = () => {
+  const handleZoomComplete = () => {
     setShowMainContent(true)
   }
 
   return (
     <>
-      {/* Circular Reveal Hero Effect */}
+      {/* ScrollTrigger Zoom Effect */}
       {!showMainContent && (
-        <CircularRevealHero onRevealComplete={handleRevealComplete}>
-          <HeroSection />
-        </CircularRevealHero>
+        <div className="fixed inset-0 z-50">
+          <ScrollTriggerZoom onComplete={handleZoomComplete} />
+        </div>
       )}
 
       {/* Main Portfolio Content */}
