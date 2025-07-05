@@ -1,8 +1,6 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 interface ScrollTriggerZoomProps {
   onComplete?: () => void
@@ -14,43 +12,64 @@ export default function ScrollTriggerZoom({ onComplete }: ScrollTriggerZoomProps
   const heroRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      gsap.registerPlugin(ScrollTrigger)
+    let gsap: any
+    let ScrollTrigger: any
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: wrapperRef.current,
-          start: "top top",
-          end: "+=150%",
-          pin: true,
-          scrub: true,
-          onComplete: () => {
-            if (onComplete) {
-              onComplete()
+    const initGSAP = async () => {
+      try {
+        // Dynamic import to ensure proper loading
+        const gsapModule = await import("gsap")
+        const scrollTriggerModule = await import("gsap/ScrollTrigger")
+        
+        gsap = gsapModule.gsap
+        ScrollTrigger = scrollTriggerModule.ScrollTrigger
+        
+        // Register the plugin
+        gsap.registerPlugin(ScrollTrigger)
+
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top top",
+            end: "+=150%",
+            pin: true,
+            scrub: true,
+            onComplete: () => {
+              if (onComplete) {
+                onComplete()
+              }
             }
           }
-        }
-      })
-
-      timeline
-        .to(imageRef.current, {
-          scale: 2,
-          z: 350,
-          transformOrigin: "center center",
-          ease: "power1.inOut"
         })
-        .to(
-          heroRef.current,
-          {
-            scale: 1.1,
+
+        timeline
+          .to(imageRef.current, {
+            scale: 2,
+            z: 350,
             transformOrigin: "center center",
             ease: "power1.inOut"
-          },
-          "<"
-        )
+          })
+          .to(
+            heroRef.current,
+            {
+              scale: 1.1,
+              transformOrigin: "center center",
+              ease: "power1.inOut"
+            },
+            "<"
+          )
+      } catch (error) {
+        console.error("Failed to initialize GSAP:", error)
+      }
+    }
 
-      return () => {
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    if (typeof window !== "undefined") {
+      initGSAP()
+    }
+
+    return () => {
+      if (ScrollTrigger) {
+        ScrollTrigger.getAll().forEach((trigger: any) => trigger.kill())
       }
     }
   }, [onComplete])
