@@ -44,7 +44,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/kpj2006/tempattendance",
     },
-    images: ["/images/attendance-dapp.png"],
+    images: ["https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"],
     status: "Live",
     featured: true,
     tags: ["Blockchain", "Attendance", "DApp", "Ethereum", "Smart Contracts"],
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/manashatwar/ciphet_file_sharing",
     },
-    images: ["/images/interdrive.png"],
+    images: ["https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg"],
     status: "Live",
     featured: true,
     tags: ["IPFS", "File Sharing", "Decentralized Storage", "Web3", "Blockchain"],
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/manashatwar/discord-dapp",
     },
-    images: ["/images/dappcord.png"],
+    images: ["https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg"],
     status: "Live",
     featured: true,
     tags: ["Discord Clone", "Web3", "Chat DApp", "Smart Contracts", "Communication"],
