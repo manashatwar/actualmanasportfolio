@@ -12,10 +12,10 @@ export default function LaptopVisual() {
     offset: ["start end", "end start"],
   })
 
-  const laptopOpacity = useTransform(scrollYProgress, [0.1, 0.4], [0, 1])
-  const laptopY = useTransform(scrollYProgress, [0.1, 0.4], [80, 0])
-  const contentOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
-  const contentX = useTransform(scrollYProgress, [0.2, 0.5], [30, 0])
+  const laptopOpacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1])
+  const laptopY = useTransform(scrollYProgress, [0.1, 0.3], [80, 0])
+  const contentOpacity = useTransform(scrollYProgress, [0.15, 0.35], [0, 1])
+  const contentX = useTransform(scrollYProgress, [0.15, 0.35], [30, 0])
 
   return (
     <section id="about" ref={containerRef} className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
@@ -39,7 +39,7 @@ export default function LaptopVisual() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 sm:mb-8">
             <span className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
@@ -61,171 +61,168 @@ export default function LaptopVisual() {
             {/* Laptop Visual */}
             <motion.div
               className="w-full flex justify-center order-2 lg:order-1"
-              style={{
-                opacity: laptopOpacity,
-                y: laptopY,
-              }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">
                 {/* Laptop Container */}
                 <div className="relative">
-                  {/* Laptop Screen */}
-                  <div className="relative">
-                    {/* Screen Outer Frame */}
-                    <div className="bg-gradient-to-b from-slate-700 to-slate-800 rounded-t-2xl sm:rounded-t-3xl p-2 sm:p-4 shadow-2xl">
-                      {/* Screen Inner Frame */}
-                      <div className="bg-slate-900 rounded-xl sm:rounded-2xl overflow-hidden border border-slate-700">
-                        {/* Menu Bar */}
-                        <div className="bg-slate-800 px-2 sm:px-4 py-2 sm:py-3 flex items-center justify-between border-b border-slate-700">
-                          <div className="flex items-center space-x-2 sm:space-x-3">
-                            <div className="flex space-x-1 sm:space-x-2">
-                              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
-                              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
-                              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
-                            </div>
-                            <div className="text-xs text-slate-400 font-mono hidden sm:block">portfolio.js</div>
+                  {/* Screen Outer Frame */}
+                  <div className="bg-gradient-to-b from-slate-700 to-slate-800 rounded-t-2xl sm:rounded-t-3xl p-2 sm:p-4 shadow-2xl">
+                    {/* Screen Inner Frame */}
+                    <div className="bg-slate-900 rounded-xl sm:rounded-2xl overflow-hidden border border-slate-700">
+                      {/* Menu Bar */}
+                      <div className="bg-slate-800 px-2 sm:px-4 py-2 sm:py-3 flex items-center justify-between border-b border-slate-700">
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <div className="flex space-x-1 sm:space-x-2">
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
                           </div>
-                          <div className="flex space-x-1">
-                            <div className="w-3 h-1 sm:w-4 sm:h-1 bg-slate-600 rounded"></div>
-                            <div className="w-3 h-1 sm:w-4 sm:h-1 bg-slate-600 rounded"></div>
-                            <div className="w-3 h-1 sm:w-4 sm:h-1 bg-slate-600 rounded"></div>
-                          </div>
+                          <div className="text-xs text-slate-400 font-mono hidden sm:block">portfolio.js</div>
                         </div>
-
-                        {/* Code Editor */}
-                        <div className="p-3 sm:p-6 h-64 sm:h-80 lg:h-96 overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950">
-                          <div className="font-mono text-xs sm:text-sm space-y-1 sm:space-y-2">
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">1</div>
-                              <div className="text-purple-400">
-                                <span className="text-blue-400">const</span>{" "}
-                                <span className="text-yellow-300">developer</span> = {"{"}
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">2</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">
-                                <span className="text-green-400">name:</span>{" "}
-                                <span className="text-orange-300">"{personalInfo.name}"</span>,
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">3</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">
-                                <span className="text-green-400">role:</span>{" "}
-                                <span className="text-orange-300">"Blockchain Developer"</span>,
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">4</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">
-                                <span className="text-green-400">university:</span>{" "}
-                                <span className="text-orange-300">"LNMIIT Jaipur"</span>,
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">5</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">
-                                <span className="text-green-400">degree:</span>{" "}
-                                <span className="text-orange-300">"B.Tech CCE"</span>,
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">6</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">
-                                <span className="text-green-400">year:</span>{" "}
-                                <span className="text-orange-300">"2024-Present"</span>,
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">7</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">
-                                <span className="text-green-400">skills:</span> [
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">8</div>
-                              <div className="ml-4 sm:ml-8 text-orange-300">"Solidity", "React", "Web3",</div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">9</div>
-                              <div className="ml-4 sm:ml-8 text-orange-300">"DeFi", "Smart Contracts"</div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">10</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">],</div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">11</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">
-                                <span className="text-green-400">clubs:</span> [
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">12</div>
-                              <div className="ml-4 sm:ml-8 text-orange-300">"Cipher", "Sankalp"</div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">13</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">],</div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">14</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">
-                                <span className="text-green-400">passion:</span>{" "}
-                                <span className="text-orange-300">"Web3 Innovation"</span>,
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">15</div>
-                              <div className="ml-2 sm:ml-4 text-slate-300">
-                                <span className="text-green-400">status:</span>{" "}
-                                <span className="text-green-300">"Available"</span>
-                              </div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">16</div>
-                              <div className="text-purple-400">{"}"}</div>
-                            </div>
-                            <div className="flex">
-                              <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">17</div>
-                              <div className="text-slate-500">
-                                <span className="text-slate-600">//</span> Ready to innovate 🚀
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Cursor */}
-                          <motion.div
-                            className="w-1 h-3 sm:w-2 sm:h-5 bg-orange-400 inline-block ml-1"
-                            animate={{ opacity: [1, 0] }}
-                            transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
-                          />
+                        <div className="flex space-x-1">
+                          <div className="w-3 h-1 sm:w-4 sm:h-1 bg-slate-600 rounded"></div>
+                          <div className="w-3 h-1 sm:w-4 sm:h-1 bg-slate-600 rounded"></div>
+                          <div className="w-3 h-1 sm:w-4 sm:h-1 bg-slate-600 rounded"></div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Laptop Base */}
-                    <div className="bg-gradient-to-b from-slate-700 to-slate-800 rounded-b-2xl sm:rounded-b-3xl h-6 sm:h-8 shadow-2xl relative">
-                      <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 sm:w-32 h-1 sm:h-2 bg-slate-600 rounded opacity-60"></div>
-                      <div className="absolute top-2 sm:top-3 left-1/2 transform -translate-x-1/2 w-6 sm:w-8 h-1 sm:h-2 bg-slate-600 rounded opacity-40"></div>
+                      {/* Code Editor */}
+                      <div className="p-3 sm:p-6 h-64 sm:h-80 lg:h-96 overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950">
+                        <div className="font-mono text-xs sm:text-sm space-y-1 sm:space-y-2">
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">1</div>
+                            <div className="text-purple-400">
+                              <span className="text-blue-400">const</span>{" "}
+                              <span className="text-yellow-300">developer</span> = {"{"}
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">2</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">
+                              <span className="text-green-400">name:</span>{" "}
+                              <span className="text-orange-300">"{personalInfo.name}"</span>,
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">3</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">
+                              <span className="text-green-400">role:</span>{" "}
+                              <span className="text-orange-300">"Blockchain Developer"</span>,
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">4</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">
+                              <span className="text-green-400">university:</span>{" "}
+                              <span className="text-orange-300">"LNMIIT Jaipur"</span>,
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">5</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">
+                              <span className="text-green-400">degree:</span>{" "}
+                              <span className="text-orange-300">"B.Tech CCE"</span>,
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">6</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">
+                              <span className="text-green-400">year:</span>{" "}
+                              <span className="text-orange-300">"2024-Present"</span>,
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">7</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">
+                              <span className="text-green-400">skills:</span> [
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">8</div>
+                            <div className="ml-4 sm:ml-8 text-orange-300">"Solidity", "React", "Web3",</div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">9</div>
+                            <div className="ml-4 sm:ml-8 text-orange-300">"DeFi", "Smart Contracts"</div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">10</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">],</div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">11</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">
+                              <span className="text-green-400">clubs:</span> [
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">12</div>
+                            <div className="ml-4 sm:ml-8 text-orange-300">"Cipher", "Sankalp"</div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">13</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">],</div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">14</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">
+                              <span className="text-green-400">passion:</span>{" "}
+                              <span className="text-orange-300">"Web3 Innovation"</span>,
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">15</div>
+                            <div className="ml-2 sm:ml-4 text-slate-300">
+                              <span className="text-green-400">status:</span>{" "}
+                              <span className="text-green-300">"Available"</span>
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">16</div>
+                            <div className="text-purple-400">{"}"}</div>
+                          </div>
+                          <div className="flex">
+                            <div className="text-slate-600 w-6 sm:w-8 text-right mr-2 sm:mr-4">17</div>
+                            <div className="text-slate-500">
+                              <span className="text-slate-600">//</span> Ready to innovate 🚀
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Cursor */}
+                        <motion.div
+                          className="w-1 h-3 sm:w-2 sm:h-5 bg-orange-400 inline-block ml-1"
+                          animate={{ opacity: [1, 0] }}
+                          transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  {/* Glow Effects */}
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-orange-500/20 via-transparent to-orange-500/20 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl"></div>
-                  <div className="absolute -inset-1 sm:-inset-2 bg-gradient-to-r from-orange-500/10 via-transparent to-red-500/10 rounded-2xl sm:rounded-3xl blur-lg sm:blur-xl"></div>
+                  {/* Laptop Base */}
+                  <div className="bg-gradient-to-b from-slate-700 to-slate-800 rounded-b-2xl sm:rounded-b-3xl h-6 sm:h-8 shadow-2xl relative">
+                    <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 sm:w-32 h-1 sm:h-2 bg-slate-600 rounded opacity-60"></div>
+                    <div className="absolute top-2 sm:top-3 left-1/2 transform -translate-x-1/2 w-6 sm:w-8 h-1 sm:h-2 bg-slate-600 rounded opacity-40"></div>
+                  </div>
                 </div>
+
+                {/* Glow Effects */}
+                <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-orange-500/20 via-transparent to-orange-500/20 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl"></div>
+                <div className="absolute -inset-1 sm:-inset-2 bg-gradient-to-r from-orange-500/10 via-transparent to-red-500/10 rounded-2xl sm:rounded-3xl blur-lg sm:blur-xl"></div>
               </div>
             </motion.div>
 
             {/* My Journey */}
             <motion.div
               className="w-full order-1 lg:order-2"
-              style={{
-                opacity: contentOpacity,
-                x: contentX,
-              }}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="professional-card h-full">
                 <div className="mb-4 sm:mb-6">
@@ -259,10 +256,10 @@ export default function LaptopVisual() {
           {/* Education Section */}
           <motion.div
             className="w-full relative"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             {/* Education Section Background */}
             <div className="absolute inset-0 rounded-xl sm:rounded-2xl overflow-hidden">
@@ -305,6 +302,10 @@ export default function LaptopVisual() {
                 <div className="lg:col-span-2">
                   <motion.div
                     className="bg-slate-800/50 border border-slate-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 h-full group hover:scale-105 transition-all duration-300"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     whileHover={{ y: -5 }}
                   >
                     <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6">
@@ -364,6 +365,10 @@ export default function LaptopVisual() {
                     {/* Cipher Club */}
                     <motion.div
                       className="bg-slate-800/50 border border-slate-700/50 rounded-lg sm:rounded-xl p-3 sm:p-4 group hover:scale-105 transition-all duration-300"
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                      viewport={{ once: true, amount: 0.3 }}
                       whileHover={{ y: -3 }}
                     >
                       <div className="flex items-center space-x-3">
@@ -386,6 +391,10 @@ export default function LaptopVisual() {
                     {/* Sankalp Club */}
                     <motion.div
                       className="bg-slate-800/50 border border-slate-700/50 rounded-lg sm:rounded-xl p-3 sm:p-4 group hover:scale-105 transition-all duration-300"
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: 0.5 }}
+                      viewport={{ once: true, amount: 0.3 }}
                       whileHover={{ y: -3 }}
                     >
                       <div className="flex items-center space-x-3">
@@ -406,13 +415,19 @@ export default function LaptopVisual() {
                     </motion.div>
 
                     {/* Additional Info */}
-                    <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg sm:rounded-xl p-3 sm:p-4 mt-3 sm:mt-4">
+                    <motion.div
+                      className="bg-slate-800/30 border border-slate-700/50 rounded-lg sm:rounded-xl p-3 sm:p-4 mt-3 sm:mt-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.6 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                    >
                       <div className="text-center">
                         <div className="text-base sm:text-lg font-bold text-white mb-1">Current Focus</div>
                         <div className="text-xs sm:text-sm text-slate-400">Blockchain Development</div>
                         <div className="text-xs sm:text-sm text-slate-400">Community Building</div>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </div>
@@ -422,10 +437,10 @@ export default function LaptopVisual() {
           {/* Call to Action */}
           <motion.div
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <motion.a
               href="#projects"
